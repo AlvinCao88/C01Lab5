@@ -33,6 +33,6 @@
                 with:
                   mongodb-version: ${{ matrix.mongodb-version }}
 
-              - run: npm ci
-              - run: npm run build --if-present
+              - run: npm i
+              - run: npm run start &
               - run: npm test
