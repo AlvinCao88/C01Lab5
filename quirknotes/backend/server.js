@@ -43,10 +43,10 @@ app.get("/getAllNotes", express.json(), async (req, res) => {
   try {
     // Find notes with username attached to them
     const collection = db.collection(COLLECTIONS.notes);
-    const data = await collection.find().toArray();
-    res.json({ response: [] });
+    const notes = await collection.find().toArray();
+    res.json({ notes });
   } catch (error) {
-    res.status(500).json({error: error.message})
+    res.status(500).json({ error: "Internal Server Error." });
   }
 })
   
@@ -71,7 +71,7 @@ app.post("/postNote", express.json(), async (req, res) => {
       createdAt
     });
     res.json({
-      response: "Note added succesfully.",
+      response: "Note added successfully.",
       insertedId: result.insertedId,
     });
 
